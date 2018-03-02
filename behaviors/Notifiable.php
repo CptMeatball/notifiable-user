@@ -2,14 +2,14 @@
 
 use Illuminate\Notifications\Notifiable as NotifiableTrait;
 
-class Notifiable extends \October\Rain\Extension\ExtensionBase
+class Notifiable extends \October\Rain\Database\ModelBehavior
 {
     use NotifiableTrait;
 
-    protected $parent;
-
-    public function __construct($parent)
+    public function __call($name, $params = null)
     {
-        $this->parent = $parent;
+        if (!method_exists($this, $name) || !is_callable($this, $name) {
+            call_user_func_array([$this->model, $name], $params);
+        }
     }
 }
