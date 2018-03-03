@@ -9,7 +9,7 @@ class Notifiable extends \October\Rain\Database\ModelBehavior
     public function __call($name, $params = null)
     {
         if (!method_exists($this, $name) || !is_callable($this, $name) {
-            call_user_func_array([$this->model, $name], $params);
+            return call_user_func_array([$this->model, $name], $params);
         }
     }
 }
